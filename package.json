@@ -1,0 +1,30 @@
+{
+  "name": "svg-logo-maker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/l-lavelle/SVG-Logo-Maker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/l-lavelle/SVG-Logo-Maker/issues"
+  },
+  "homepage": "https://github.com/l-lavelle/SVG-Logo-Maker#readme",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.6"
+  }
+}
