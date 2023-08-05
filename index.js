@@ -1,8 +1,8 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
-const { Triangle, Circle, Rectangle} = require("./lib/shapes")
+const { Triangle, Circle, Square} = require("./lib/shapes")
 
-// add validation for color 
+// add validation for color name or take off validator 
 logoQuestions=[
   {
     type: 'input',
@@ -20,40 +20,54 @@ logoQuestions=[
     type: 'input',
     message: 'Please enter a color for logo (use color name or hexadecimal number)',
     name: 'logoColor',
+    // validate: function(logoColor){
+    //   if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(logoColor)){
+    //     return true
+    // } else{
+    //     return console.log("\nPlease enter a valid color or hexadecimal color code")
+    // }
+    // }
   },
   {
     type: 'list',
     message: 'Please choose a shape for logo',
-    choices:["Circle", "Rectangle","Triangle"],
+    choices:["Circle", "Square", "Triangle"],
     name: 'shape',
   },
   {
     type: 'input',
     message: 'Please enter a color for shape (use color name or hexadecimal number)',
     name: 'shapeColor',
+    // validate: function(logoColor){
+    //   if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(logoColor) || isColor(logoColor)){
+    //     return true
+    // } else{
+    //     return console.log("\nPlease enter a valid color or hexadecimal color code")
+    // }
+    // }
   }
 ]
 
-// finish function
 function whichShape(data){
   const {logoName, logoColor, shape, shapeColor} = data;
   if (shape==="Circle"){
-    const trial = new Circle(logoName, logoColor, shapeColor);
-    let trial2=trial.renderCircle()
-    return trial2
+    const circle = new Circle(logoName, logoColor, shapeColor);
+    let circleValues=circle.renderCircle()
+    return circleValues
   } else if (shape==="Triangle"){
-    console.log('try again')
+    const triangle = new Triangle(logoName, logoColor, shapeColor);
+    let triangleValues=triangle.renderTriangle()
+    return triangleValues
   }else{
-      const trial = new Rectangle(logoName, logoColor, shapeColor);
-      trial.render()
-      
-   
+    const square = new Square(logoName, logoColor, shapeColor);
+    let squareValues=square.renderSquare()
+    return squareValues
   }
 }
 
 function writeToFile(filename, data){
   fs.writeFile(filename, data, (err) =>
-  err ? console.error(err) : console.log('Success!')
+  err ? console.error(err) : console.log('Generated logo.svg!')
 );
 }
 
@@ -65,3 +79,5 @@ function init() {
 }
 
 init()
+// SVG file is created named `logo.svg`
+// 300x200 pixel image that matches the criteria I entered
