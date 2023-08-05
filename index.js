@@ -1,7 +1,8 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
+const { Triangle, Circle, Rectangle} = require("./lib/shapes")
 
-// add validation
+// add validation for color 
 logoQuestions=[
   {
     type: 'input',
@@ -17,13 +18,13 @@ logoQuestions=[
   },
   {
     type: 'input',
-    message: 'Please enter a color for logo (use color name or hexadecimal number',
+    message: 'Please enter a color for logo (use color name or hexadecimal number)',
     name: 'logoColor',
   },
   {
     type: 'list',
     message: 'Please choose a shape for logo',
-    choices:["Circle", "Square","Triangle"],
+    choices:["Circle", "Rectangle","Triangle"],
     name: 'shape',
   },
   {
@@ -33,24 +34,33 @@ logoQuestions=[
   }
 ]
 
-function whichShape(shape){
+// finish function
+function whichShape(data){
+  const {logoName, logoColor, shape, shapeColor} = data;
   if (shape==="Circle"){
-
-  } if (shape==="Triangle"){
-
+    const trial = new Circle(logoName, logoColor, shapeColor);
+    let trial2=trial.renderCircle()
+    return trial2
+  } else if (shape==="Triangle"){
+    console.log('try again')
   }else{
-    
+      const trial = new Rectangle(logoName, logoColor, shapeColor);
+      trial.render()
+      
+   
   }
 }
 
-function writeToFile(title,data){
-  console.log(title)
+function writeToFile(filename, data){
+  fs.writeFile(filename, data, (err) =>
+  err ? console.error(err) : console.log('Success!')
+);
 }
 
 function init() {
     inquirer.prompt(logoQuestions)
     .then((response)=> 
-        {writeToFile(`${response.logoName}.svg`,whichShape(response.shape))},
+        {writeToFile(`./lib/Logo-${response.logoName}.svg`,whichShape(response))},
       )
 }
 
