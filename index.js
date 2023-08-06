@@ -1,7 +1,9 @@
+// packages imported 
 const inquirer = require('inquirer')
 const fs = require('fs')
 const { Triangle, Circle, Square} = require("./lib/shapes")
 
+// Prompt questions to create logo 
 logoQuestions=[
   {
     type: 'input',
@@ -49,12 +51,13 @@ logoQuestions=[
   }
 ]
 
+// Returns the logo color to test in shape color validation
 function testColor(color){
   let trial = JSON.parse(JSON.stringify(color))
   return trial.logoColor
 }
 
-
+// Tests to see which shape was choosen to create new instance of correct class 
 function whichShape(data){
   const {logoName, logoColor, shape, shapeColor} = data;
   if (shape==="Circle"){
@@ -72,12 +75,14 @@ function whichShape(data){
   }
 }
 
+// Create SVG file 
 function writeToFile(filename, data){
   fs.writeFile(filename, data, (err) =>
   err ? console.error(err) : console.log('Generated logo.svg!')
 );
 }
 
+// Prompts user with logoQuestions
 function init() {
     inquirer.prompt(logoQuestions)
     .then((response)=> 
@@ -87,7 +92,7 @@ function init() {
 
 init()
 
-// Comments
+
 
 
 
