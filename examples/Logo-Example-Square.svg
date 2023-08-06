@@ -1,4 +1,4 @@
-<svg height="300" width="300">
-        <rect width="200" height="200" x="50" y="50" style="fill: #B8A2A5; stroke: black; stroke-width: 5px;" />
-        <text x="50%" y="50%" dominant-baseline="middle" font-size="75" fill="#D5182F" text-anchor="middle">HH</text>  
-        </svg>
+<svg height="200" width="300">
+        <rect width="175" height="175" x="62.5" y="12.5" style="fill: #B8A2A5; stroke: black; stroke-width: 5px;" />
+        <text x="50%" y="50%" dominant-baseline="middle" font-size="75" fill="#D5182F" text-anchor="middle">HH</text>
+</svg>
