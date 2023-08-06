@@ -81,12 +81,12 @@ function writeToFile(filename, data){
 function init() {
     inquirer.prompt(logoQuestions)
     .then((response)=> 
-        {writeToFile(`./examples/Logo-${response.logoName}.svg`,whichShape(response))},
+        {writeToFile(`./examples/logo.svg`,whichShape(response))},
       )
 }
 
 init()
-// SVG file is created named `logo.svg`
+// SVG file is created named `logo.svg` fix examples 
 // 300x200 pixel image that matches the criteria I entered
 // Comments
 // finish readme

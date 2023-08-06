@@ -33,5 +33,5 @@ MIT License
 The following websites were used for reference to create this application:<br />
 https://1stwebdesigner.com/create-simple-shapes-svg/
 
-[Walk Thru Video Demonstration]()
+[Walk Thru Video Demonstration](https://drive.google.com/file/d/1f3VcUmUGQX7fj6JhhbNmmZ1EA1N0W1DF/view)
 
