@@ -2,7 +2,6 @@ const inquirer = require('inquirer')
 const fs = require('fs')
 const { Triangle, Circle, Square} = require("./lib/shapes")
 
-// add validation for color name or take off validator 
 logoQuestions=[
   {
     type: 'input',
@@ -18,15 +17,14 @@ logoQuestions=[
   },
   {
     type: 'input',
-    message: 'Please enter a color for logo (use color name or hexadecimal number)',
+    message: 'Please hexadecimal number for the logo color',
     name: 'logoColor',
-    // validate: function(logoColor){
-    //   if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(logoColor)){
-    //     return true
-    // } else{
-    //     return console.log("\nPlease enter a valid color or hexadecimal color code")
-    // }
-    // }
+    validate: function(logoColor){
+      if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(logoColor)){
+        return true
+    } else{
+        return console.log("\nPlease enter a valid hexadecimal color code")
+    }}
   },
   {
     type: 'list',
@@ -36,17 +34,26 @@ logoQuestions=[
   },
   {
     type: 'input',
-    message: 'Please enter a color for shape (use color name or hexadecimal number)',
+    message: 'Please enter a hexadecimal number for the shape color',
     name: 'shapeColor',
-    // validate: function(logoColor){
-    //   if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(logoColor) || isColor(logoColor)){
-    //     return true
-    // } else{
-    //     return console.log("\nPlease enter a valid color or hexadecimal color code")
-    // }
-    // }
+    validate: function(shapeColor, res){
+    if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(shapeColor) && shapeColor!==testColor(res)){
+        return true
+    } 
+    else if (shapeColor===testColor(res)){
+      return console.log("\nPlease pick a different color than logo color")
+    }
+    else{
+      return console.log("\nPlease enter a valid hexadecimal color code")
+    }},
   }
 ]
+
+function testColor(color){
+  let trial = JSON.parse(JSON.stringify(color))
+  return trial.logoColor
+}
+
 
 function whichShape(data){
   const {logoName, logoColor, shape, shapeColor} = data;
@@ -74,10 +81,14 @@ function writeToFile(filename, data){
 function init() {
     inquirer.prompt(logoQuestions)
     .then((response)=> 
-        {writeToFile(`./lib/Logo-${response.logoName}.svg`,whichShape(response))},
+        {writeToFile(`./examples/Logo-${response.logoName}.svg`,whichShape(response))},
       )
 }
 
 init()
 // SVG file is created named `logo.svg`
 // 300x200 pixel image that matches the criteria I entered
+// Comments
+// finish readme
+// walkthough video and link
+
